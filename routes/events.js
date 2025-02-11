@@ -3,13 +3,26 @@ import eventsModel from '../models/eventsSchema.js';
 
 export const eventsRouter = express.Router();
 
+// eventsRouter.route("/")
+//     .post(async (req,res) => {
+//         const newEvent = new eventsModel(req.body);
+//         try {
+//             const event = await newEvent.save();
+//             res.status(201).json(event);
+//         } catch (error) {
+//             res.status(422).json({ error: "Unable to add new event."})
+//         }
+//     })
+
 eventsRouter.route("/")
-    .post(async (req,res) => {
+    .post(async (req, res) => {
         const newEvent = new eventsModel(req.body);
         try {
             const event = await newEvent.save();
             res.status(201).json(event);
         } catch (error) {
-            res.status(422).json({ error: "Unable to add new event."})
+            console.error("Error adding event:", error);  // Log the full error
+            res.status(422).json({ error: "Unable to add new event." });
         }
-    })
+    });
+

@@ -1,19 +1,22 @@
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import dotenv from 'dotenv';
+dotenv.config();
 import mongoose from 'mongoose';
 import express from 'express';
+import {eventsRouter} from './routes/events.js';
 
 const app = express();
-const host = process.env.HOST;
-const port = process.env.PORT;
+const host = process.env.HOST || 'localhost';
+const port = process.env.PORT || 4000;
 
-dotenv.config({ path: `env.${process.env.NODE_ENV}` });
 mongoose.set("strictQuery", true);
 
 app.use(express.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(cors());
+
+app.use("/events", eventsRouter);
 
 const db = async () => {
     console.log(`Connecting to database at ${process.env.MONGODB_URL}`);
