@@ -5,6 +5,7 @@ dotenv.config();
 import mongoose from 'mongoose';
 import express from 'express';
 import {eventsRouter} from './routes/events.js';
+import { signUpRouter } from './routes/signup.js';
 
 const app = express();
 const host = process.env.HOST || 'localhost';

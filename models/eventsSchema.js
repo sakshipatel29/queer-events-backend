@@ -48,7 +48,7 @@ const eventsSchema = new mongoose.Schema({
         required: true,
         validate: {
             validator: function(v) {
-                return /^(http|https):\/\/[^ "]+$/.test(v);  // Regex for URL validation
+                return /^(http|https):\/\/[^ "]+$/.test(v);
             },
             message: props => `${props.value} is not a valid URL!`
         },
