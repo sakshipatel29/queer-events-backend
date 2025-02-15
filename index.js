@@ -17,6 +17,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.use("/events", eventsRouter);
+app.use("/sign-up", signUpRouter);
 
 const db = async () => {
     console.log(`Connecting to database at ${process.env.MONGODB_URL}`);
