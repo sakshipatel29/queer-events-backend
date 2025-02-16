@@ -4,8 +4,9 @@ import dotenv from 'dotenv';
 dotenv.config();
 import mongoose from 'mongoose';
 import express from 'express';
-import {eventsRouter} from './routes/events.js';
+import { eventsRouter } from './routes/events.js';
 import { signUpRouter } from './routes/signup.js';
+import { logInRouter } from './routes/login.js';
 
 const app = express();
 const host = process.env.HOST || 'localhost';
@@ -19,6 +20,7 @@ app.use(cors());
 
 app.use("/events", eventsRouter);
 app.use("/sign-up", signUpRouter);
+app.use("/log-in", logInRouter);
 
 const db = async () => {
     console.log(`Connecting to database at ${process.env.MONGODB_URL}`);
