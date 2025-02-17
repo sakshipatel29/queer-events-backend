@@ -4,12 +4,12 @@ import UserModel from '../models/userSchema.js';
 export const logInRouter = express.Router();
 
 logInRouter.route("/")
-    .post((req, res) => {
+    .post( async (req, res) => {
         const { email, password } = req.body;
         try {
-            const data = UserModel.findOne({ email });
+            const data = await UserModel.findOne({ email });
             if( data && password === data.password){
-                return res.send({ user });
+                return res.send({ data });
             } else {
                 return res.send({ message: "Incorrect email or password." });
             }
